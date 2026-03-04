@@ -1,0 +1,19 @@
+<h1>Send Mail to Residents</h1>
+<form method="POST">
+    <label>Select Resident:</label>
+    <select name="ResidentID">
+        {% for resident in residents %}
+        <option value="{{ resident[0] }}">{{ resident[1] }}</option>
+        {% endfor %}
+    </select><br>
+    <label>Item Type:</label>
+    <select name="item_type">
+        <option value="letter">Letter</option>
+        <option value="advert">Advert</option>
+        <option value="package">Package</option>
+    </select><br>
+    <label>Content:</label>
+    <textarea name="content" required></textarea><br>
+    <button type="submit">Send</button>
+</form>
+<a href="/logout">Logout</a>

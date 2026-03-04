@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Sensor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Add a New Sensor</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        <form method="POST" action="/add_sensor">
+            <label for="type">Sensor Type:</label><br>
+            <input type="text" id="type" name="type" required><br><br>
+
+            <label for="status">Status:</label><br>
+            <input type="text" id="status" name="status" required><br><br>
+
+            <label for="basestation_id">BaseStation:</label><br>
+            <select id="basestation_id" name="basestation_id" required>
+                {% for bs in basestations %}
+                <option value="{{ bs[0] }}">{{ bs[1] }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <button type="submit">Add Sensor</button>
+        </form>
+    </div>
+</body>
+</html>

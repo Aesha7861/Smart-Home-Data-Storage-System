@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your BaseStations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Your BaseStations</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/add_basestation">Add BaseStation</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        {% if basestations %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>BaseStation ID</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bs in basestations %}
+                    <tr>
+                        <td>{{ bs[0] }}</td>
+                        <td>{{ bs[1] }}</td>
+                        <td>{{ bs[2] }}</td>
+                        <td><a href="/basestation/{{ bs[0] }}/sensors" class="btn">View Sensors</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No BaseStations added yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

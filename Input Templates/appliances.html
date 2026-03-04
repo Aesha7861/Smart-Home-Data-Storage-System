@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliances</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Your Appliances</h1>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/add_appliance">Add Appliance</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    {% if appliances %}
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Appliance ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>House</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appliance in appliances %}
+                <tr>
+                    <td>{{ appliance[0] }}</td>
+                    <td>{{ appliance[1] }}</td>
+                    <td>{{ appliance[2] }}</td>
+                    <td>{{ appliance[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no Appliances yet.</p>
+    {% endif %}
+    <br>
+    <a href="/add_appliance">Add a New Appliance</a>
+    <br><br>
+    <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>

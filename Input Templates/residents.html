@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residents</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Residents List</h1>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Resident ID</th>
+                <th>Resident Name</th>
+                <th>House Address</th>
+                <th>House ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resident in residents %}
+            <tr>
+                <td>{{ resident[0] }}</td> <!-- ResidentID -->
+                <td>{{ resident[1] }}</td> <!-- ResidentName -->
+                <td>{{ resident[2] }}</td> <!-- HouseAddress -->
+                <td>{{ resident[3] }}</td> <!-- HouseID -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

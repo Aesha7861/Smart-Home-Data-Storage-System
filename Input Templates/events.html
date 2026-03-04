@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Log</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Event Log</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/add_event">Log New Event</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        {% if events %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event ID</th>
+                        <th>Timestamp</th>
+                        <th>Description</th>
+                        <th>Sensor</th>
+                        <th>Appliance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                    <tr>
+                        <td>{{ event[0] }}</td>
+                        <td>{{ event[1] }}</td>
+                        <td>{{ event[2] }}</td>
+                        <td>{{ event[3] or 'N/A' }}</td>
+                        <td>{{ event[4] or 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No events have been logged yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

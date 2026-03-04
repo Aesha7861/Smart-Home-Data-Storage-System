@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notifications</title>
+</head>
+<body>
+    <h2>My Notifications</h2>
+
+    {% if notifications %}
+        <ul>
+            {% for notification in notifications %}
+                <li>
+                    <strong>{{ notification[0] }}</strong> <br>
+                    <small>Received on: {{ notification[1] }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No notifications available.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('resident_dashboard') }}">Back to Dashboard</a>
+
+    <script>
+        function fetchNotifications() {
+            fetch('/resident_notifications')
+                .then(response => response.json())
+                .then(data => {
+                    let notifications = document.getElementById("notification_list");
+                    notifications.innerHTML = "";
+                    data.notifications.forEach(notification => {
+                        let item = document.createElement("li");
+                        item.textContent = notification.message;
+                        notifications.appendChild(item);
+                    });
+                });
+        }
+    
+        setInterval(fetchNotifications, 30000);  // Check every 30 seconds
+    </script>
+    
+</body>
+</html>

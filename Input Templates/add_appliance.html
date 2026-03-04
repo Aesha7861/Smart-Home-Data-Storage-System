@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Appliance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Add a New Appliance</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        <form method="POST" action="/add_appliance">
+            <label for="name">Appliance Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="status">Status:</label>
+        <select name="status">
+            <option value="On">On</option>
+            <option value="Off">Off</option>
+        </select>
+
+            <label for="house_id">House:</label><br>
+            <select id="house_id" name="house_id" required>
+                {% for house in houses %}
+                <option value="{{ house[0] }}">{{ house[1] }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <button type="submit">Add Appliance</button>
+        </form>
+    </div>
+</body>
+</html>

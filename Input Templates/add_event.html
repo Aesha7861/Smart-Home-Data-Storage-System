@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Add New Event</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/calendar">Calendar</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        <form method="POST" action="/calendar/add">
+            <label for="house_id">House ID:</label><br>
+            <input type="text" id="house_id" name="house_id" required><br><br>
+
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required><br><br>
+
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" required></textarea><br><br>
+
+            <label for="start_time">Start Time:</label><br>
+            <input type="datetime-local" id="start_time" name="start_time" required><br><br>
+
+            <label for="end_time">End Time:</label><br>
+            <input type="datetime-local" id="end_time" name="end_time" required><br><br>
+
+            <label for="recurrence">Recurrence:</label><br>
+            <select id="recurrence" name="recurrence" required>
+                <option value="None">None</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+            </select><br><br>
+
+            <label for="access_level">Access Level:</label><br>
+            <select id="access_level" name="access_level" required>
+                <option value="Private">Private</option>
+                <option value="Shared">Shared</option>
+            </select><br><br>
+
+            <button type="submit">Add Event</button>
+        </form>
+    </div>
+</body>
+</html>

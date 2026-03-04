@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Resident</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Add a New Resident</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        <form method="POST" action="/add_resident">
+            <label for="house_id">Select House:</label><br>
+            <select id="house_id" name="house_id" required>
+                <option value="" disabled selected>Select a house</option>
+                {% for house in houses %}
+                <option value="{{ house[0] }}">{{ house[1] }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="resident_name">Resident Name:</label><br>
+            <input type="text" id="resident_name" name="resident_name" required><br><br>
+
+            <button type="submit">Add Resident</button>
+        </form>
+    </div>
+</body>
+</html>

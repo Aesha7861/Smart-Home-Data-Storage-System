@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Appliances</title>
+</head>
+<body>
+    <h1>Assign Appliance to Residents</h1>
+    <form action="{{ url_for('assign_appliance') }}" method="POST">
+        <label for="resident_id">Select Resident:</label>
+        <select name="resident_id">
+            {% for resident in residents %}
+                <option value="{{ resident[0] }}">{{ resident[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="appliance_id">Select Appliance:</label>
+        <select name="appliance_id">
+            {% for appliance in appliances %}
+                <option value="{{ appliance[0] }}">{{ appliance[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="interval">Notification Interval (minutes):</label>
+        <input type="number" name="interval" value="60">
+
+        <button type="submit">Assign</button>
+    </form>
+</body>
+</html>

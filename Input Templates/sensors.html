@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>Sensor Data</title>
+</head>
+<body>
+    <h1>Sensor Data</h1>
+        <nav>
+        <ul class="menu">
+            <li>
+            <a href="/dashboard">Dashboard</a></li>
+            <li><a href="/add_appliance">Add Appliance</a></li>
+            
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <table border="1">
+        <tr>
+            <th>Sensor ID</th>
+            <th>BaseStation ID</th>
+            <th>Value</th>
+            <th>Unit</th>
+            <th>Timestamp</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>House ID</th>
+        </tr>
+        {% for sensor in sensors %}
+        <tr>
+            <td>{{ sensor['SensorID'] }}</td>
+            <td>{{ sensor['BaseStationID'] }}</td>
+            <td>{{ sensor['Value'] }}</td>
+            <td>{{ sensor['Unit'] }}</td>
+            <td>{{ sensor['Timestamp'] }}</td>
+            <td>{{ sensor['Status'] }}</td>
+            <td>{{ sensor['Metadata']['location'] }}</td>
+            <td>{{ sensor['HouseID'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

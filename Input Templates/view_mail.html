@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Mail</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>My Received Mail</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="{{ url_for('resident_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <div class="card">
+        {% if mail_items %}
+    <table border="1" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Content</th>
+                <th>Date Received</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mail in mail_items %}
+            <tr>
+                <td>{{ mail[0] }}</td>
+                <td>{{ mail[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p style="color: red;">No mail received yet.</p>
+{% endif %}
+
+    </div>
+
+</body>
+</html>

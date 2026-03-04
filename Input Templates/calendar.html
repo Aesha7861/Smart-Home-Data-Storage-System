@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Calendar</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/calendar/add">Add Event</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="card">
+        <h2>Your Scheduled Events</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Event Filter Form -->
+        <form method="GET" action="/calendar">
+            <label for="recurrence">Filter by Recurrence:</label>
+            <select name="recurrence" id="recurrence" onchange="this.form.submit()">
+                <option value="" {% if not recurrence %}selected{% endif %}>All</option>
+                <option value="daily" {% if recurrence == 'daily' %}selected{% endif %}>Daily</option>
+                <option value="weekly" {% if recurrence == 'weekly' %}selected{% endif %}>Weekly</option>
+                <option value="monthly" {% if recurrence == 'monthly' %}selected{% endif %}>Monthly</option>
+            </select>
+        </form>
+
+        {% if events %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Resident ID</th>
+                        <th>House ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Recurrence</th>
+                        <th>Access Level</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                    <tr>
+                        <td>{{ event[0] }}</td>
+                        <td>{{ event[1] }}</td>
+                        <td>{{ event[2] }}</td>
+                        <td>{{ event[3] }}</td>
+                        <td>{{ event[4].strftime('%Y-%m-%d %I:%M %p') }}</td>
+                        <td>{{ event[5].strftime('%Y-%m-%d %I:%M %p') }}</td>
+                        <td>{{ event[6] }}</td>
+                        <td>{{ event[7] }}</td>
+                        <td>
+                            <a href="/calendar/update/{{ event[0] }}" class="btn btn-primary">Edit</a>
+                            <form action="/calendar/delete/{{ event[0] }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?');" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="{{ url_for('calendar', page=page-1, recurrence=recurrence) }}" class="btn">Previous</a>
+                {% endif %}
+                <span>Page {{ page }} of {{ total_pages }}</span>
+                {% if page < total_pages %}
+                    <a href="{{ url_for('calendar', page=page+1, recurrence=recurrence) }}" class="btn">Next</a>
+                {% endif %}
+            </div>
+
+        {% else %}
+            <p>No events scheduled yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

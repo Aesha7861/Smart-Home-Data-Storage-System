@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensors for BaseStation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Sensors for BaseStation ID: {{ basestation_id }}</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/basestations">Back to BaseStations</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        {% if sensors %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sensor ID</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sensor in sensors %}
+                    <tr>
+                        <td>{{ sensor[0] }}</td>
+                        <td>{{ sensor[1] }}</td>
+                        <td>{{ sensor[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No sensors found for this BaseStation.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

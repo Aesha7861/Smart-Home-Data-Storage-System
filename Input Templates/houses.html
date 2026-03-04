@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Houses</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/add_house">Add House</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>House ID</th>
+                    <th>Owner User ID</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if houses %}
+                    {% for house in houses %}
+                    <tr>
+                        <td>{{ house[0] }}</td>
+                        
+                        <td>{{ house[2] }}</td>
+                        <td>{{ house[1] }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No houses found</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

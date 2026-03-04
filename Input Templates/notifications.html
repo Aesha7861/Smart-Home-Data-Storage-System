@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications</title>
+</head>
+<body>
+    <h1>Your Notifications</h1>
+    <table border="1">
+        <tr>
+            <th>Notification</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for notification in notifications %}
+        <tr>
+            <td>{{ notification[1] }}</td>
+            <td>{{ notification[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

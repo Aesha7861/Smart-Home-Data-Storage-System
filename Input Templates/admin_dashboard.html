@@ -1,0 +1,7 @@
+<h1>Admin Dashboard</h1>
+<p>Total Residents: {{ resident_count }}</p>
+<p>Total Houses: {{ house_count }}</p>
+<p>Total Sensors: {{ sensor_count }}</p>
+<a href="{{ url_for('add_user') }}">Add User</a>
+<a href="{{ url_for('add_house') }}">Add House</a>
+<a href="{{ url_for('view_sensors_data') }}">View Sensors</a>

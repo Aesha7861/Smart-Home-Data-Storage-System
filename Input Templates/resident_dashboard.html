@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<h1>Welcome, {{ session['user_name'] }}</h1>
+
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="/resident_dashboard">Dashboard</a></li>
+            <li><a href="/sensors">Sensors</a></li>
+            <li><a href="/appliances">Appliances</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/basestations">BaseStations</a></li>
+            <li><a href="{{ url_for('view_mail') }}">View Mail</a></li>
+            <li><a href="{{ url_for('resident_notifications') }}">View Notifications</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="notifications">
+        <h3>Your Notifications</h3>
+<div id="notifications-section">
+    {% if notifications %}
+        <ul>
+            {% for notification in notifications %}
+                <li class="notification {% if not notification.is_read %}unread{% else %}read{% endif %}" data-id="{{ notification.id }}">
+                    <strong>{{ notification.id }}</strong> - {{ notification.message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no unread notifications.</p>
+    {% endif %}
+</div>
+
+        
+    </div>
+
+    
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

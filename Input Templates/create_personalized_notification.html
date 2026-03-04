@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Personalized Notification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            background-color: #007bff;
+            padding: 10px 0;
+        }
+
+        .menu li {
+            list-style: none;
+            margin: 0 20px;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .card {
+            background: white;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        select, textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+   <h1> Create Personalized Notification </h1>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<div class="card">
+    <h2>Send a Notification</h2>
+    
+    <form action="{{ url_for('create_personalized_notification') }}" method="POST">
+        <label for="user_id">Select Resident:</label>
+        <select name="user_id" required>
+            <option value="">-- Select Resident --</option>
+            {% for user in residents %}
+                <option value="{{ user[0] }}">{{ user[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="notification_type">Select Notification Type:</label>
+        <select name="notification_type" required>
+            <option value="Heating">Heating Consumption</option>
+            <option value="Electricity">Electricity Usage</option>
+            <option value="Water">Water Consumption</option>
+            <option value="Garage">Garage Door Status</option>
+            <option value="Locking">Front Door Locking Status</option>
+            <option value="Appliance">Smart Appliance Status</option>
+        </select>
+
+        <label for="message">Message:</label>
+        <textarea name="message" rows="4" required placeholder="Enter your notification message..."></textarea>
+
+        <label for="interval">Notification Interval (minutes):</label>
+        <input type="number" name="interval" min="1" required placeholder="e.g., 30">
+
+        <button type="submit">Send Notification</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}" class="back-btn">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

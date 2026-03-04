@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Event</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Update Event</h1>
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/calendar">Calendar</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+    </nav>
+    <div class="card">
+        <form method="POST" action="/calendar/update/{{ event_id }}">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" value="{{ event[2] }}" required><br><br>
+
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" required>{{ event[3] }}</textarea><br><br>
+
+            <label for="start_time">Start Time:</label><br>
+            <input type="datetime-local" id="start_time" name="start_time" value="{{ event[4] }}" required><br><br>
+
+            <label for="end_time">End Time:</label><br>
+            <input type="datetime-local" id="end_time" name="end_time" value="{{ event[5] }}" required><br><br>
+
+            <label for="recurrence">Recurrence:</label><br>
+            <select id="recurrence" name="recurrence" required>
+                <option value="None" {% if event[6] == 'None' %}selected{% endif %}>None</option>
+                <option value="Daily" {% if event[6] == 'Daily' %}selected{% endif %}>Daily</option>
+                <option value="Weekly" {% if event[6] == 'Weekly' %}selected{% endif %}>Weekly</option>
+                <option value="Monthly" {% if event[6] == 'Monthly' %}selected{% endif %}>Monthly</option>
+            </select><br><br>
+
+            <label for="access_level">Access Level:</label><br>
+            <select id="access_level" name="access_level" required>
+                <option value="Private" {% if event[7] == 'Private' %}selected{% endif %}>Private</option>
+                <option value="Shared" {% if event[7] == 'Shared' %}selected{% endif %}>Shared</option>
+            </select><br><br>
+
+            <button type="submit">Update Event</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Resident</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Edit Resident</h1>
+    </header>
+
+    <section>
+        <form action="{{ url_for('edit_resident', resident_id=resident[0]) }}" method="POST">
+            <label for="resident_name">Resident Name:</label>
+            <input type="text" id="resident_name" name="resident_name" value="{{ resident[1] }}" required>
+            <button type="submit">Update Resident</button>
+        </form>
+        <a href="/houses">Back to Houses</a>
+    </section>
+</body>
+</html>
