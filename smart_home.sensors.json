@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "67895d63f3b2b409500ddd40"
+  },
+  "SensorID": "Temp123",
+  "BaseStationID": "1",
+  "Timestamp": "2025-01-16T00:00:00.000Z",
+  "Value": 24.2,
+  "Status": "Active",
+  "Metadata": {},
+  "HouseID": "1"
+},
+{
+  "_id": {
+    "$oid": "67895dfff3b2b409500ddd43"
+  },
+  "SensorID": "Temp123",
+  "BaseStationID": "1",
+  "Timestamp": "2025-01-16T00:00:00.000Z",
+  "Value": 27,
+  "Status": "InActive",
+  "Metadata": {},
+  "HouseID": "2"
+},
+{
+  "_id": {
+    "$oid": "67895e1cf3b2b409500ddd45"
+  },
+  "SensorID": "Temp123",
+  "BaseStationID": "2",
+  "Timestamp": "2025-01-16T00:00:00.000Z",
+  "Value": 25,
+  "Status": "Active",
+  "Metadata": {},
+  "HouseID": "7"
+},
+{
+  "_id": {
+    "$oid": "678dabfc659c60ddac31ade5"
+  },
+  "SensorID": "Temp123",
+  "BaseStationID": "1",
+  "Timestamp": "2025-01-16T00:00:00.000Z",
+  "Value": 27,
+  "Status": "InActive",
+  "Metadata": {},
+  "HouseID": "2"
+},
+{
+  "_id": {
+    "$oid": "678dac2b659c60ddac31ade6"
+  },
+  "SensorID": "kali100691",
+  "BaseStationID": "12",
+  "Timestamp": "2025-01-16T00:00:00.000Z",
+  "Value": 27,
+  "Status": "InActive",
+  "Metadata": {},
+  "HouseID": "3"
+}]
